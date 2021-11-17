@@ -8,7 +8,7 @@ interface ToDoProps {
 }
 
 function App(): JSX.Element {
-  const [toDoItems, setToDoItems] = useState<ToDoProps[]>([])
+  const [toDoItems, setToDoItems] = useState<ToDoProps[]>([]);
 
   useEffect(() => {
     const fetchLink = async () => {
@@ -18,13 +18,11 @@ function App(): JSX.Element {
     };
     fetchLink();
   }, []);
-  console.log(toDoItems)
+  console.log(toDoItems);
   return (
     <div className="body">
       <Header />
-      <ToDoList
-        toDoItems={toDoItems}
-      />
+      <ToDoList toDoItems={toDoItems} />
     </div>
   );
 }
@@ -51,7 +49,7 @@ function ToDoItemCard(props: ToDoItemCardProps): JSX.Element {
       <button>Edit</button>
       <button>Delete</button>
     </div>
-  )
+  );
 }
 
 interface ToDoListProps {
@@ -61,14 +59,12 @@ interface ToDoListProps {
 function ToDoList(props: ToDoListProps): JSX.Element {
   return (
     <div className="todo-list">
-      {props.toDoItems.map((item) => 
-        <ToDoItemCard
-          toDoItem={item}
-          key={item.id}
-        />
-      )};
+      {props.toDoItems.map((item) => (
+        <ToDoItemCard toDoItem={item} key={item.id} />
+      ))}
+      ;
     </div>
-  )
+  );
 }
 
 export default App;
