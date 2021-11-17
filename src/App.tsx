@@ -20,18 +20,18 @@ function App(): JSX.Element {
   }, []);
   console.log(toDoItems);
   return (
-    <div className="body">
+    <>
       <Header />
       <ToDoList toDoItems={toDoItems} />
-    </div>
+    </>
   );
 }
 
 function Header(): JSX.Element {
   return (
-    <>
+    <header>
       <h1>My To-do List</h1>
-    </>
+    </header>
   );
 }
 
@@ -42,12 +42,12 @@ interface ToDoItemCardProps {
 function ToDoItemCard(props: ToDoItemCardProps): JSX.Element {
   return (
     <div className="todo-item">
-      <button>Complete</button>
-      <span>{props.toDoItem.task}</span>
-      <span>{props.toDoItem.creationDate}</span>
-      <span>{props.toDoItem.dueDate}</span>
-      <button>Edit</button>
-      <button>Delete</button>
+      <button className="todo-complete"></button>
+      <p>{props.toDoItem.task}</p>
+      <p>{props.toDoItem.creationDate}</p>
+      <p>{props.toDoItem.dueDate}</p>
+      <button className="todo-edit">Edit</button>
+      <button className="todo-delete">X</button>
     </div>
   );
 }
@@ -62,7 +62,6 @@ function ToDoList(props: ToDoListProps): JSX.Element {
       {props.toDoItems.map((item) => (
         <ToDoItemCard toDoItem={item} key={item.id} />
       ))}
-      ;
     </div>
   );
 }

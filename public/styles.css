@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+  background-color: linear-gradient(260deg, #f1f1f1, #d7e1ec);
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  margin: 10px;
+}
+
+.todo-item {
+  margin: 10px;
+  padding: 10px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 10px;
+  background: #f5f6fa;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.todo-item button {
+  background-color: linear-gradient(260deg, #f1f1f1, #d7e1ec);
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  border: solid black 1px;
+  height: 30px;
+}
+
+.todo-item button:hover {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.todo-delete {
+  border-radius: 100%;
+}
+
+.todo-delete:hover {
+  border: solid 1px #e53935;
+}
+
+.todo-complete {
+  border-radius: 100%;
+  width: 30px;
+  margin: auto;
+}
+
+.todo-complete:hover {
+  border: solid 1px #00c853;
+}
