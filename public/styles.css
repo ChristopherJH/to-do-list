@@ -1,63 +1,96 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 body {
-  background-color: linear-gradient(260deg, #f1f1f1, #d7e1ec);
+  background-color: #212529;
   margin: 0;
   font-family: "Roboto", sans-serif;
+  color: #f8f9fa;
+}
+
+body h2 {
+  margin: 10px auto;
+  max-width: 40vw;
 }
 
 header {
   margin: 10px;
 }
 
-.create-todo {
-  margin: 10px auto;
-  max-width: 40vw;
+.uncompleted-tasks {
+  margin: 100px 0px;
 }
 
-.todo-item {
-  margin: 10px auto;
-  max-width: 60vw;
-  padding: 10px;
-  background: #f5f6fa;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.todo-item,
+.create-todo {
+  margin: auto;
+  max-width: 40vw;
+  height: 50px;
+  border-bottom: #ced4da solid 1px;
+}
+
+.create-todo {
+  display: flex;
+}
+
+.task-input {
+  height: 45px;
+  border: none;
+  color: #6c757d;
+  background-color: #212529;
+  font-size: medium;
+  width: 80%;
 }
 
 .normal-todo {
-  display: grid;
-  grid-auto-flow: column;
-  grid-column-gap: 10px;
+  display: flex;
 }
 
-.todo-item button {
-  background-color: linear-gradient(260deg, #f1f1f1, #d7e1ec);
-  border-radius: 10px;
-  padding: 10px;
-  margin: auto;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-  border: solid black 1px;
-  height: 30px;
+/* .normal-todo div {
+  padding: 2px;
+  margin: auto 0px;
+  cursor: pointer;
+} */
+
+.normal-todo-left-content {
+  display: flex;
+  width: 90%;
 }
 
-.todo-item button:hover {
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+.normal-todo-right-content {
+  display: flex;
+  width: 10%;
 }
 
-.todo-delete {
-  border-radius: 100%;
+.save-todo-button {
+  padding: 5px;
+  border: #212529 solid 1px;
+  border-radius: 5px;
+  background-color: #ef233c;
+  color: white;
+  font-size: large;
 }
 
-.todo-delete:hover {
-  border: solid 1px #e53935;
+.todo-add {
+  margin: auto 4% auto 4.5%;
+  padding: 5px;
 }
 
-.todo-complete {
-  border-radius: 100%;
-  width: 30px;
-  margin: auto;
+textarea:focus,
+input:focus {
+  outline: none;
 }
 
-.todo-complete:hover {
-  border: solid 1px #00c853;
+.todo-complete,
+.todo-delete,
+.todo-edit {
+  margin: auto 5%;
+  padding: 5px;
+}
+
+.todo-complete:hover,
+.todo-delete:hover,
+.todo-edit:hover,
+.todo-add:hover {
+  background-color: #6c757d;
+  border-radius: 5px;
 }

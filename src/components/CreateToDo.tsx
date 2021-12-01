@@ -5,17 +5,18 @@ export function CreateToDo(): JSX.Element {
   const [taskInput, setTaskInput] = useState("");
   return (
     <div className="create-todo">
-      <input
-        className="task-input"
-        placeholder="I need to..."
-        value={taskInput}
-        onChange={(e) => setTaskInput(e.target.value)} />
-      <button
-        className="add-todo-button"
+      <div
+        className="todo-add"
         onClick={() => handleSubmitTodo(taskInput, null, setTaskInput)}
       >
-        Add
-      </button>
+        <i className="fas fa-plus-circle"></i>
+      </div>
+      <input
+        className="task-input"
+        placeholder="Add task"
+        value={taskInput}
+        onChange={(e) => setTaskInput(e.target.value)}
+      />
     </div>
   );
 }

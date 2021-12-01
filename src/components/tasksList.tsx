@@ -18,7 +18,7 @@ export function UncompletedTasks(props: UncompletedTaskProps): JSX.Element {
 }
 export function CompletedTasks(props: UncompletedTaskProps): JSX.Element {
   return (
-    <div className="todo-list">
+    <div className="completed-list">
       {props.toDoItems
         .filter((item) => item.completed)
         .map((item) => (

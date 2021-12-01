@@ -25,20 +25,13 @@ function App(): JSX.Element {
   }, [toDoItems]);
   return (
     <>
-      <Header />
-      <CreateToDo />
-      <UncompletedTasks toDoItems={toDoItems} />
+      <div className="uncompleted-tasks">
+        <UncompletedTasks toDoItems={toDoItems} />
+        <CreateToDo />
+      </div>
       <h2>Completed</h2>
       <CompletedTasks toDoItems={toDoItems} />
     </>
-  );
-}
-
-function Header(): JSX.Element {
-  return (
-    <header>
-      <h1>My To-do List</h1>
-    </header>
   );
 }
 

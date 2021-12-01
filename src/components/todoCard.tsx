@@ -25,26 +25,33 @@ function NormalCard(props: NormalCardProps): JSX.Element {
   const itemProps = props.toDoItem;
   return (
     <div className="normal-todo">
-      <button
-        className="todo-complete"
-        id="todo-complete-true"
-        onClick={() => handleComplete(itemProps.id)}
-      ></button>
-      <p>{itemProps.task}</p>
-      <p>{itemProps.creationDate}</p>
-      <p>{itemProps.dueDate}</p>
-      {!itemProps.completed && (
-        <button className="todo-edit" onClick={() => props.setEditting(true)}>
-          Edit
-        </button>
-      )}
-      {!itemProps.completed && (
-        <button
-          className="todo-delete"
-          onClick={() => handleDelete(itemProps.id)}
+      <div className="normal-todo-left-content">
+        <div
+          className="todo-complete"
+          id="todo-complete-true"
+          onClick={() => handleComplete(itemProps.id)}
         >
-          X
-        </button>
+          {!itemProps.completed && <i className="far fa-check-circle"></i>}
+          {itemProps.completed && <i className="fas fa-check-circle"></i>}
+        </div>
+        <div className="todo-task">
+          <p>{itemProps.task}</p>
+        </div>
+        {/* <p>{itemProps.creationDate}</p>
+      <p>{itemProps.dueDate}</p> */}
+      </div>
+      {!itemProps.completed && (
+        <div className="normal-todo-right-content">
+          <div className="todo-edit" onClick={() => props.setEditting(true)}>
+            <i className="far fa-edit"></i>
+          </div>
+          <div
+            className="todo-delete"
+            onClick={() => handleDelete(itemProps.id)}
+          >
+            <i className="fas fa-trash"></i>
+          </div>
+        </div>
       )}
     </div>
   );
@@ -63,12 +70,15 @@ function EdittingCard(props: EdittingCardProps): JSX.Element {
         className="task-input"
         placeholder="I need to..."
         value={taskInput}
-        onChange={(e) => setTaskInput(e.target.value)} />
+        onChange={(e) => setTaskInput(e.target.value)}
+      />
       <button
         className="save-todo-button"
-        onClick={() => handleSaveTodo(itemProps.id, taskInput, null, props.setEditting)}
+        onClick={() =>
+          handleSaveTodo(itemProps.id, taskInput, null, props.setEditting)
+        }
       >
-        Save
+        <b>Save</b>
       </button>
     </div>
   );
