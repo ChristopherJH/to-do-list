@@ -10,7 +10,7 @@ export interface ToDoProps {
   completed: boolean;
 }
 
-export const baseURL = "https://cjhtodo.herokuapp.com//";
+export const baseURL = "https://cjhtodo.herokuapp.com/";
 
 function App(): JSX.Element {
   const [toDoItems, setToDoItems] = useState<ToDoProps[]>([]);
