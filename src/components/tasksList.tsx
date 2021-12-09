@@ -5,18 +5,33 @@ interface UncompletedTaskProps {
   toDoItems: ToDoProps[];
 }
 
+// Function that returns lists of uncompleted tasks
 export function UncompletedTasks(props: UncompletedTaskProps): JSX.Element {
   const uncompletedItems = props.toDoItems.filter((item) => !item.completed);
-  const today = new Date();
-  const isSingleDigitDay = today.getDate().toString().length === 1;
-  const todaysDate =
-    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + (isSingleDigitDay && "0") + today.getDate();
     return (
     <div className="todo-list">
-      <DailyTasks tasks={uncompletedItems} desiredDate={todaysDate} dayDescription={"Today"} />
+      <OverdueTasks tasks={uncompletedItems} />
+      <DailyTasks tasks={uncompletedItems} desiredDate={getDate(0)} dayDescription={"Today"} />
       <GeneralTasks tasks={uncompletedItems} />
     </div>
   );
+}
+
+interface OverdueTasksProps {
+  tasks: ToDoProps[];
+}
+
+function OverdueTasks(props: OverdueTasksProps): JSX.Element {
+  const tasksWithADate = props.tasks.filter((item) => item.duedate !== null) 
+  const overdueTasks = tasksWithADate.filter((item) => isOverdue(item))
+  return (
+    <div className={"overdue-tasks"}>
+      <h2>Overdue</h2>
+      {overdueTasks.map((item) => (
+        <ToDoItemCard toDoItem={item} key={item.id} />
+      ))}
+    </div>
+  )
 }
 
 interface DailyTaskProps {
@@ -54,23 +69,14 @@ function GeneralTasks({tasks}: GeneralTaskProps): JSX.Element {
   )
 }
 
-/* UncompletedTasks
-->
-today tasks
-tasks without a date
-tomorrow tasks
-next 6 days tasks
-tasks after this week
-
-*/
-
-// function sortByCreationDate(a: ToDoProps, b: ToDoProps) {
-//   if (a.creationdate < b.creationdate) {
-//     return -1;
-//   } else {
-//     return 1;
-//   }
-// }
+function getDate(daysFromToday: number): string {
+  const today = new Date();
+  const day = today.getDate() + daysFromToday
+  const isSingleDigitDay = day.toString().length === 1;
+  const todaysDate =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + (isSingleDigitDay && "0") + day;
+  return todaysDate
+}
 
 export function CompletedTasks(props: UncompletedTaskProps): JSX.Element {
   return (
@@ -82,4 +88,17 @@ export function CompletedTasks(props: UncompletedTaskProps): JSX.Element {
         ))}
     </div>
   );
+}
+
+function isOverdue(task: ToDoProps) {
+  const taskDay = parseInt(task.duedate.slice(8, 10));
+  const taskMonth = parseInt(task.duedate.slice(5, 7));
+  const taskYear = parseInt(task.duedate.slice(0, 4));
+
+
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  return (taskYear < year) || (taskYear === year && taskMonth < month) || (taskYear === year && taskMonth === month && taskDay < day)
 }
