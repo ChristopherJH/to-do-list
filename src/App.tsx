@@ -5,8 +5,8 @@ import { UncompletedTasks, CompletedTasks } from "./components/tasksList";
 export interface ToDoProps {
   id: number;
   task: string;
-  creationDate: string;
-  dueDate: string;
+  creationdate: string;
+  duedate: string;
   completed: boolean;
 }
 
@@ -14,24 +14,26 @@ export const baseURL = "https://cjhtodo.herokuapp.com/";
 
 function App(): JSX.Element {
   const [toDoItems, setToDoItems] = useState<ToDoProps[]>([]);
-
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     const fetchLink = async () => {
       const response = await fetch(baseURL + "items");
       const data = await response.json();
       setToDoItems(data);
+      setRefresh(false);
     };
     fetchLink();
-  }, [toDoItems]);
+  }, [refresh]);
   return (
-    <>
+    <div className="app">
+      <CreateToDo setRefresh={setRefresh} />
       <div className="uncompleted-tasks">
-        <UncompletedTasks toDoItems={toDoItems} />
-        <CreateToDo />
+        <UncompletedTasks toDoItems={toDoItems} setRefresh={setRefresh} />
+        <CreateToDo setRefresh={setRefresh} />
       </div>
       <h2>Completed</h2>
-      <CompletedTasks toDoItems={toDoItems} />
-    </>
+      <CompletedTasks toDoItems={toDoItems} setRefresh={setRefresh} />
+    </div>
   );
 }
 

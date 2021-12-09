@@ -12,12 +12,19 @@ body h2 {
   max-width: 40vw;
 }
 
-header {
-  margin: 10px;
+.app {
+  margin: 20px 10px;
 }
 
 .uncompleted-tasks {
   margin: 100px 0px;
+}
+
+.general-tasks,
+.overdue-tasks,
+.future-tasks,
+.daily-tasks {
+  margin: 50px 0px;
 }
 
 .todo-item,
@@ -32,24 +39,24 @@ header {
   display: flex;
 }
 
+.clear-icon {
+  padding: 5px;
+  margin: auto 10px auto auto;
+  cursor: pointer;
+}
+
 .task-input {
   height: 45px;
   border: none;
   color: #6c757d;
   background-color: #212529;
   font-size: medium;
-  width: 80%;
+  width: 60%;
 }
 
 .normal-todo {
   display: flex;
 }
-
-/* .normal-todo div {
-  padding: 2px;
-  margin: auto 0px;
-  cursor: pointer;
-} */
 
 .normal-todo-left-content {
   display: flex;
@@ -61,18 +68,31 @@ header {
   width: 10%;
 }
 
-.save-todo-button {
-  padding: 5px;
+.save-todo-button,
+.cancel-todo-button {
+  padding: 5px 8px;
   border: #212529 solid 1px;
   border-radius: 5px;
-  background-color: #ef233c;
+  background-color: #42a5f5;
   color: white;
   font-size: large;
+  margin: auto 5px;
+  cursor: pointer;
+}
+
+.edit-todo {
+  margin: auto;
+  display: flex;
+}
+
+.cancel-todo-button {
+  background-color: #343a40;
 }
 
 .todo-add {
   margin: auto 4% auto 4.5%;
   padding: 5px;
+  cursor: pointer;
 }
 
 textarea:focus,
@@ -85,12 +105,29 @@ input:focus {
 .todo-edit {
   margin: auto 5%;
   padding: 5px;
+  cursor: pointer;
+}
+
+.create-todo-calendar-and-clear {
+  display: flex;
+}
+
+.create-todo-show-calendar {
+  margin: auto 10px auto auto;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.edit-todo-empty-space {
+  margin: auto 5.25%;
+  padding: 5px;
 }
 
 .todo-complete:hover,
 .todo-delete:hover,
 .todo-edit:hover,
-.todo-add:hover {
+.todo-add:hover,
+.create-todo-show-calendar:hover {
   background-color: #6c757d;
   border-radius: 5px;
 }
