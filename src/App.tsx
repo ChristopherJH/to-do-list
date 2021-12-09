@@ -26,13 +26,13 @@ function App(): JSX.Element {
   }, [refresh]);
   return (
     <div className="app">
-      <CreateToDo setRefresh={setRefresh}/>
+      <CreateToDo setRefresh={setRefresh} />
       <div className="uncompleted-tasks">
-        <UncompletedTasks toDoItems={toDoItems} />
-        <CreateToDo setRefresh={setRefresh}/>
+        <UncompletedTasks toDoItems={toDoItems} setRefresh={setRefresh} />
+        <CreateToDo setRefresh={setRefresh} />
       </div>
       <h2>Completed</h2>
-      <CompletedTasks toDoItems={toDoItems} />
+      <CompletedTasks toDoItems={toDoItems} setRefresh={setRefresh} />
     </div>
   );
 }

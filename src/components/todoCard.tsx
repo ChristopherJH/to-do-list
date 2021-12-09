@@ -3,13 +3,18 @@ import { ToDoProps, baseURL } from "../App";
 
 interface ToDoItemCardProps {
   toDoItem: ToDoProps;
+  setRefresh: (input: boolean) => void;
 }
 export function ToDoItemCard(props: ToDoItemCardProps): JSX.Element {
   const [editting, setEditting] = useState<boolean>(false);
   return (
     <div className="todo-item">
       {!editting && (
-        <NormalCard toDoItem={props.toDoItem} setEditting={setEditting} />
+        <NormalCard
+          toDoItem={props.toDoItem}
+          setEditting={setEditting}
+          setRefresh={props.setRefresh}
+        />
       )}
       {editting && (
         <EdittingCard toDoItem={props.toDoItem} setEditting={setEditting} />
@@ -20,7 +25,9 @@ export function ToDoItemCard(props: ToDoItemCardProps): JSX.Element {
 interface NormalCardProps {
   toDoItem: ToDoProps;
   setEditting: (input: boolean) => void;
+  setRefresh: (input: boolean) => void;
 }
+
 function NormalCard(props: NormalCardProps): JSX.Element {
   const itemProps = props.toDoItem;
   return (
@@ -29,7 +36,7 @@ function NormalCard(props: NormalCardProps): JSX.Element {
         <div
           className="todo-complete"
           id="todo-complete-true"
-          onClick={() => handleComplete(itemProps.id)}
+          onClick={() => handleComplete(itemProps.id, props.setRefresh)}
         >
           {!itemProps.completed && <i className="far fa-check-circle"></i>}
           {itemProps.completed && <i className="fas fa-check-circle"></i>}
@@ -104,10 +111,14 @@ async function handleSaveTodo(
   setEditting(false);
 }
 
-async function handleComplete(id: number) {
+async function handleComplete(
+  id: number,
+  setRefresh: (input: boolean) => void
+) {
   await fetch(baseURL + "items/" + id.toString() + "/complete", {
     method: "PUT",
   });
+  setRefresh(true);
 }
 
 async function handleDelete(id: number) {

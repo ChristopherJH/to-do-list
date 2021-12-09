@@ -20,6 +20,13 @@ body h2 {
   margin: 100px 0px;
 }
 
+.general-tasks,
+.overdue-tasks,
+.future-tasks,
+.daily-tasks {
+  margin: 50px 0px;
+}
+
 .todo-item,
 .create-todo {
   margin: auto;
