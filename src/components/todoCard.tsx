@@ -52,7 +52,7 @@ function NormalCard(props: NormalCardProps): JSX.Element {
           </div>
           <div
             className="todo-delete"
-            onClick={() => handleDelete(itemProps.id)}
+            onClick={() => handleDelete(itemProps.id, props.setRefresh)}
           >
             <i className="fas fa-trash"></i>
           </div>
@@ -121,6 +121,7 @@ async function handleComplete(
   setRefresh(true);
 }
 
-async function handleDelete(id: number) {
+async function handleDelete(id: number, setRefresh: (input: boolean) => void) {
   await fetch(baseURL + "items/" + id.toString(), { method: "DELETE" });
+  setRefresh(true);
 }
