@@ -37,8 +37,6 @@ function NormalCard(props: NormalCardProps): JSX.Element {
         <div className="todo-task">
           <p>{itemProps.task}</p>
         </div>
-        {/* <p>{itemProps.creationDate}</p>
-      <p>{itemProps.dueDate}</p> */}
       </div>
       {!itemProps.completed && (
         <div className="normal-todo-right-content">
@@ -66,6 +64,7 @@ function EdittingCard(props: EdittingCardProps): JSX.Element {
 
   return (
     <div className="edit-todo">
+      <div className="edit-todo-empty-space"></div>
       <input
         className="task-input"
         placeholder="I need to..."
@@ -78,7 +77,13 @@ function EdittingCard(props: EdittingCardProps): JSX.Element {
           handleSaveTodo(itemProps.id, taskInput, null, props.setEditting)
         }
       >
-        <b>Save</b>
+        <i className="fas fa-save"></i>
+      </button>
+      <button
+        className="cancel-todo-button"
+        onClick={() => props.setEditting(false)}
+      >
+        Cancel
       </button>
     </div>
   );
