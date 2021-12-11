@@ -5,6 +5,8 @@ interface ToDoItemCardProps {
   toDoItem: ToDoProps;
   setRefresh: (input: boolean) => void;
 }
+
+// General format of each task
 export function ToDoItemCard(props: ToDoItemCardProps): JSX.Element {
   const [editting, setEditting] = useState<boolean>(false);
   return (
@@ -52,7 +54,7 @@ function NormalCard(props: NormalCardProps): JSX.Element {
           </div>
           <div
             className="todo-delete"
-            onClick={() => handleDelete(itemProps.id)}
+            onClick={() => handleDelete(itemProps.id, props.setRefresh)}
           >
             <i className="fas fa-trash"></i>
           </div>
@@ -61,10 +63,12 @@ function NormalCard(props: NormalCardProps): JSX.Element {
     </div>
   );
 }
+
 interface EdittingCardProps {
   toDoItem: ToDoProps;
   setEditting: (input: boolean) => void;
 }
+
 function EdittingCard(props: EdittingCardProps): JSX.Element {
   const itemProps = props.toDoItem;
   const [taskInput, setTaskInput] = useState(itemProps.task);
@@ -121,6 +125,7 @@ async function handleComplete(
   setRefresh(true);
 }
 
-async function handleDelete(id: number) {
+async function handleDelete(id: number, setRefresh: (input: boolean) => void) {
   await fetch(baseURL + "items/" + id.toString(), { method: "DELETE" });
+  setRefresh(true);
 }
