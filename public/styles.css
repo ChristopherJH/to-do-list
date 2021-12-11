@@ -1,10 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 body {
-  background-color: #212529;
+  background: #212529;
+  background: radial-gradient(circle, rgb(43, 43, 43) 0%, rgb(39, 39, 39) 100%);
   margin: 0;
   font-family: "Roboto", sans-serif;
   color: #f8f9fa;
+}
+
+p {
+  font-size: large;
 }
 
 body h2 {
@@ -32,11 +37,18 @@ body h2 {
   margin: auto;
   max-width: 40vw;
   height: 50px;
-  border-bottom: #ced4da solid 1px;
+  border-bottom: #ced4da solid 3px;
 }
 
 .create-todo {
   display: flex;
+}
+
+.create-todo-set-date {
+  background-color: rgb(39, 39, 39, 0);
+  color: #ced4da;
+  border: 0;
+  cursor: pointer;
 }
 
 .clear-icon {
@@ -49,7 +61,7 @@ body h2 {
   height: 45px;
   border: none;
   color: #6c757d;
-  background-color: #212529;
+  background-color: rgb(39, 39, 39, 0);
   font-size: medium;
   width: 60%;
 }
