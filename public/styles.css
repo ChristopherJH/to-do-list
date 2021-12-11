@@ -139,7 +139,8 @@ input:focus {
 .todo-delete:hover,
 .todo-edit:hover,
 .todo-add:hover,
-.create-todo-show-calendar:hover {
+.create-todo-show-calendar:hover,
+.clear-icon:hover {
   background-color: #6c757d;
   border-radius: 5px;
 }

@@ -1,5 +1,8 @@
 import { ToDoProps } from "../App";
+import { getDate } from "./utils/getDate";
 import { ToDoItemCard } from "./todoCard";
+import { isFutureTask } from "./utils/isFutureTask";
+import { isOverdue } from "./utils/isOverdue";
 
 interface UncompletedTaskProps {
   toDoItems: ToDoProps[];
@@ -171,21 +174,6 @@ function GeneralTasks(props: GeneralTaskProps): JSX.Element {
   );
 }
 
-function getDate(daysFromToday: number): string {
-  const someDate = new Date();
-  someDate.setDate(someDate.getDate() + daysFromToday);
-  const day = someDate.getDate();
-  const isSingleDigitDay = day.toString().length === 1;
-  const newDate =
-    someDate.getFullYear() +
-    "-" +
-    (someDate.getMonth() + 1) +
-    "-" +
-    (isSingleDigitDay ? "0" : "") +
-    day;
-  return newDate;
-}
-
 export function CompletedTasks(props: UncompletedTaskProps): JSX.Element {
   return (
     <div className="completed-list">
@@ -199,37 +187,5 @@ export function CompletedTasks(props: UncompletedTaskProps): JSX.Element {
           />
         ))}
     </div>
-  );
-}
-
-function isOverdue(task: ToDoProps) {
-  const taskDay = parseInt(task.duedate.slice(8, 10));
-  const taskMonth = parseInt(task.duedate.slice(5, 7));
-  const taskYear = parseInt(task.duedate.slice(0, 4));
-
-  const today = new Date();
-  const day = today.getDate();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
-  return (
-    taskYear < year ||
-    (taskYear === year && taskMonth < month) ||
-    (taskYear === year && taskMonth === month && taskDay < day)
-  );
-}
-
-function isFutureTask(task: ToDoProps) {
-  const taskDay = parseInt(task.duedate.slice(8, 10));
-  const taskMonth = parseInt(task.duedate.slice(5, 7));
-  const taskYear = parseInt(task.duedate.slice(0, 4));
-
-  const today = new Date();
-  const day = today.getDate();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
-  return (
-    taskYear > year ||
-    (taskYear === year && taskMonth > month) ||
-    (taskYear === year && taskMonth === month && taskDay > day + 6)
   );
 }
