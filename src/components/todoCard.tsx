@@ -24,6 +24,7 @@ export function ToDoItemCard(props: ToDoItemCardProps): JSX.Element {
     </div>
   );
 }
+
 interface NormalCardProps {
   toDoItem: ToDoProps;
   setEditting: (input: boolean) => void;
