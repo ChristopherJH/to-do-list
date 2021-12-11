@@ -125,7 +125,6 @@ async function handleComplete(
   setRefresh(true);
 }
 
-
 async function handleDelete(id: number, setRefresh: (input: boolean) => void) {
   await fetch(baseURL + "items/" + id.toString(), { method: "DELETE" });
   setRefresh(true);
